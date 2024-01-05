@@ -41,6 +41,7 @@ INSTALLED_APPS = [
     'hearitapp',
     'rest_framework',
     'corsheaders',
+    # 'bootstrap5',
 ]
 
 MIDDLEWARE = [

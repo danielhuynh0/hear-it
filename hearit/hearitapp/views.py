@@ -2,14 +2,23 @@
 from django.shortcuts import render, HttpResponseRedirect
 from django.http import HttpResponse, JsonResponse
 
-from hearitapp.models import ExampleModel
-from hearitapp.serializers import ExampleModelSerializer
+from hearitapp.models import Login
+from hearitapp.serializers import LoginSerializer
+from rest_framework import viewsets
+from rest_framework.decorators import api_view
 
-from django.views.decorators.csrf import csrf_exempt
-
-@csrf_exempt
+@api_view(['GET'])
 def get_data(request):
-	data = ExampleModel.objects.all()
 	if request.method == 'GET':
-		serializer = ExampleModelSerializer(data, many=True)
+		data = Login.objects.all()
+		serializer = LoginSerializer(data, many=True)
 		return JsonResponse(serializer.data, safe=False)
+	
+@api_view(['POST'])
+def create_login(request):
+	if request.method == 'POST':
+		serializer = LoginSerializer(data=request.data)
+		if serializer.is_valid():
+			serializer.save()
+			return JsonResponse(serializer.data, status=201)
+		return JsonResponse(serializer.errors, status=400)

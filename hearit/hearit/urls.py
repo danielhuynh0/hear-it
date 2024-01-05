@@ -15,7 +15,8 @@ Including another URLconf
     2. Add a URL to urlpatterns:  path('blog/', include('blog.urls'))
 """
 
-from django.conf.urls import url
+from django.urls import re_path as url
+from django.urls import include, path
 from django.contrib import admin
 from django.views.generic.base import TemplateView
 from hearitapp.views import *
@@ -23,5 +24,6 @@ from hearitapp.views import *
 urlpatterns = [
     url(r'^admin/', admin.site.urls),
     url(r'^getData/', get_data),
-    url(r'^.*', TemplateView.as_view(template_name="home.html"), name="home")
+    url(r'^.*', TemplateView.as_view(template_name="home.html"), name="home"),
+    path('api/create_login/', create_login, name='create_login'),
 ]

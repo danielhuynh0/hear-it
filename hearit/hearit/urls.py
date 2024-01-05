@@ -25,5 +25,5 @@ urlpatterns = [
     url(r'^admin/', admin.site.urls),
     url(r'^getData/', get_data),
     url(r'^.*', TemplateView.as_view(template_name="home.html"), name="home"),
-    path('api/create_login/', create_login, name='create_login'),
+    path('api/create-user/', create_user, name='create_user'),
 ]

@@ -15,7 +15,7 @@ def get_data(request):
 		return JsonResponse(serializer.data, safe=False)
 	
 @api_view(['POST'])
-def create_login(request):
+def create_user(request):
 	if request.method == 'POST':
 		serializer = LoginSerializer(data=request.data)
 		if serializer.is_valid():

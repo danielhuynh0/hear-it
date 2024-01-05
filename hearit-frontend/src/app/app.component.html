@@ -1,39 +1,67 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>User Registration</title>
-  <!-- Bootstrap CSS -->
-  <link href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
-</head>
-<body>
-  <div class="container mt-5">
-    <div class="row justify-content-center">
-      <div class="col-md-6">
-        <div class="card">
-          <div class="card-header bg-primary text-white">
-            <h4>Create a New Account</h4>
-          </div>
-          <div class="card-body">
-            <form (ngSubmit)="onSubmit()">
-              <div class="form-group">
-                <label for="username">Username</label>
-                <input type="text" class="form-control" id="username" placeholder="Enter your username" [(ngModel)]="user.username" name="username" required>
+  <head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>User Registration</title>
+    <!-- Bootstrap CSS -->
+    <link href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
+  </head>
+  <body>
+    <div class="container mt-5">
+      <div class="row justify-content-center">
+        <div class="col-md-6">
+          <div class="card">
+            <div class="card-header bg-primary text-white">
+              <h4>Account Managemnt</h4>
+            </div>
+            <div class="card-body">
+              <ul class="nav nav-tabs" id="myTabs" role="tablist">
+                <li class="nav-item">
+                  <a class="nav-link active" id="register-tab" (click)="activeTab = 'register'" role="tab" aria-controls="register" [class.active]="activeTab === 'register'">Register</a>
+                </li>
+                <li class="nav-item">
+                  <a class="nav-link" id="login-tab" (click)="activeTab = 'login'" role="tab" aria-controls="login" [class.active]="activeTab === 'login'">Login</a>
+                </li>
+              </ul>
+              <div class="tab-content mt-3">
+                <!-- Registration Tab -->
+                <div class="tab-pane fade" [class.show.active]="activeTab === 'register'" id="register" role="tabpanel" aria-labelledby="register-tab">
+                  <form (ngSubmit)="onRegister()" [hidden]="activeTab !== 'register'">
+                    <div class="form-group">
+                      <label for="regUsername">Username</label>
+                      <input type="text" class="form-control" id="regUsername" placeholder="Enter your username" [(ngModel)]="registerUser.username" name="regUsername" required>
+                    </div>
+                    <div class="form-group">
+                      <label for="regPassword">Password</label>
+                      <input type="password" class="form-control" id="regPassword" placeholder="Enter your password" [(ngModel)]="registerUser.password" name="regPassword" required>
+                    </div>
+                    <div class="form-group">
+                      <label for="confirmRegPassword">Confirm Password</label>
+                      <input type="password" class="form-control" id="confirmRegPassword" placeholder="Confirm your password" [(ngModel)]="confirmPassword" name="confirmRegPassword" required>
+                    </div>
+                    <button type="submit" class="btn btn-primary">Register</button>
+                  </form>
+                </div>
+                <!-- Login Tab -->
+                <div class="tab-pane fade" [class.show.active]="activeTab === 'login'" id="login" role="tabpanel" aria-labelledby="login-tab">
+                  <form (ngSubmit)="onLogin()" [hidden]="activeTab !== 'login'">
+                    <div class="form-group">
+                      <label for="loginUsername">Username</label>
+                      <input type="text" class="form-control" id="loginUsername" placeholder="Enter your username" [(ngModel)]="loginUser.username" name="loginUsername" required>
+                    </div>
+                    <div class="form-group">
+                      <label for="loginPassword">Password</label>
+                      <input type="password" class="form-control" id="loginPassword" placeholder="Enter your password" [(ngModel)]="loginUser.password" name="loginPassword" required>
+                    </div>
+                    <button type="submit" class="btn btn-success">Login</button>
+                  </form>
+                </div>
               </div>
-              <div class="form-group">
-                <label for="password">Password</label>
-                <input type="password" class="form-control" id="password" placeholder="Enter your password" [(ngModel)]="user.password" name="password" required>
-              </div>
-              <div class="form-group">
-                <label for="confirmPassword">Confirm Password</label>
-                <input type="password" class="form-control" id="confirmPassword" placeholder="Confirm your password" [(ngModel)]="confirmPassword" name="confirmPassword" required>
-              </div>
-              <button type="submit" class="btn btn-primary">Create Account</button>
-            </form>
+            </div>
           </div>
         </div>
       </div>
     </div>
-  </div>
-</body>
+  </body>
+</html>

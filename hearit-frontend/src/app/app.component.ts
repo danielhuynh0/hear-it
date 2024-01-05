@@ -11,21 +11,23 @@ export class AppComponent {
 
   title = 'hearit-frontend';
 
-  user = {
+  activeTab: string = 'register';
+
+  registerUser = {
     username: '',
     password: '',
   };
 
   confirmPassword = '';
 
-  onSubmit() {
-    console.log(this.user);
+  onRegister() {
+    console.log(this.registerUser);
 
-    if (this.user.password !== this.confirmPassword) {
+    if (this.registerUser.password !== this.confirmPassword) {
       alert('Passwords do not match');
       return;
     } else {
-      this.createUserService.createUser(this.user).subscribe(
+      this.createUserService.createUser(this.registerUser).subscribe(
         (data) => {
           console.log(data);
           alert('User created successfully');
@@ -33,5 +35,14 @@ export class AppComponent {
         (error) => console.log(error)
       );
     }
+  }
+
+  loginUser = {
+    username: '',
+    password: '',
+  };
+
+  onLogin() {
+    console.log(this.loginUser);
   }
 }

@@ -37,7 +37,7 @@
             </div>
             <!-- Login Tab -->
             <div *ngIf="activeTab === 'login'">
-              <form (ngSubmit)="onLogin()">
+              <form (ngSubmit)="onLogin($event)">
                 <h5 class="mb-3">Log into an Existing Account</h5>
                 <div class="form-group">
                   <label for="loginUsername">Username</label>

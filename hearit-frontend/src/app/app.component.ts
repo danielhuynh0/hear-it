@@ -42,7 +42,8 @@ export class AppComponent {
     password: '',
   };
 
-  onLogin() {
+  onLogin(e: any) {
+    e.preventDefault();
     console.log(this.loginUser);
   }
 }

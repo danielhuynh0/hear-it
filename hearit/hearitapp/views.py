@@ -6,6 +6,7 @@ from hearitapp.models import Login
 from hearitapp.serializers import LoginSerializer
 from rest_framework import viewsets
 from rest_framework.decorators import api_view
+from django.views.decorators.csrf import csrf_exempt
 
 @api_view(['GET'])
 def get_data(request):
@@ -13,8 +14,9 @@ def get_data(request):
 		data = Login.objects.all()
 		serializer = LoginSerializer(data, many=True)
 		return JsonResponse(serializer.data, safe=False)
-	
+
 @api_view(['POST'])
+@csrf_exempt
 def create_user(request):
 	if request.method == 'POST':
 		serializer = LoginSerializer(data=request.data)
